@@ -1,0 +1,19 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int binarySearch(int arr[], int low, int high, int target) {
+    if(low > high) return -1;
+    int mid = low + (high - low) / 2;
+    if(arr[mid] == target) return mid;
+    if(arr[mid] > target) return binarySearch(arr, low, mid - 1, target);
+    if(arr[mid] < target) return binarySearch(arr, mid + 1, high, target);
+}
+
+int main() {
+    int n = 8;
+    int arr[n] = {2, 4, 5, 6, 8, 9, 12, 14};
+    int target = 5;
+    int low = 0, high = n - 1;
+    cout << binarySearch(arr, low, high, target);
+    return 0;
+}
