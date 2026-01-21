@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int a, b;
+    cout << "Enter any two numbers: ";
+    cin >> a >> b;
+    int lcm;
+    if(a > b) {
+        for(int i = 1; i < 99999; i++)
+            if((a * i) % b == 0) {
+                lcm = a * i;
+                break;
+            }
+    }
+    else {
+        for(int i = 1; i < 99999; i++)
+            if((b * i) % a == 0) {
+                lcm = b * i;
+                break;
+            }
+    }
+    cout << "LCM of numbers is: " << lcm << endl;
+}
