@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int a, b;
+    cout << "Enter any two numbers: ";
+    cin >> a >> b;
+    while(a != 0 && b != 0) {
+        if(a > b)
+            a %= b;
+        else    
+            b %= a;
+    }
+    if(a == 0)
+        cout << "GCD of numbers is: " << b << endl;
+    else
+        cout << "GCD of numbers is: " << a << endl;
+}
