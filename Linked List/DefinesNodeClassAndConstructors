@@ -1,0 +1,20 @@
+class Node {
+    public:
+        int data;
+        Node* next;
+    public:
+        Node(int value, Node* address) {
+            data = value;
+            next = address;
+        }
+    public:
+        Node(int value) {
+            data = value;
+            next = nullptr;
+        }
+    public:
+        Node() {
+            data = 0;
+            next = nullptr;
+        }
+};
