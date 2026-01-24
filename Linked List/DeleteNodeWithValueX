@@ -1,0 +1,20 @@
+Node* deleteNodeWithValueX(Node* head, int x) {
+  if(head == NULL) return head;
+  if(head -> data == x) {
+    Node* temp = head;
+    head = head-> next;
+    delete temp;
+    return head;
+  }
+  Node* temp = head;
+  while(temp -> next != NULL) {
+    if(temp -> next -> data == x) {
+      Node* del = temp -> next;
+      temp -> next = temp -> next -> next;
+      delete del;
+      break;
+    }
+    temp = temp -> next;
+  }
+  return head;
+}
