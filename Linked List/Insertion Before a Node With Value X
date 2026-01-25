@@ -1,0 +1,20 @@
+Node* insertionBeforeX(Node* head, int x, int data) {
+  if(head == NULL) return head;
+  if(head -> data == x) {
+    Node* temp = new Node(data);
+    temp -> next = head;
+    head = temp;
+    return head;
+  }
+  Node* curr = head;
+  while(curr -> next != NULL) {
+    if(curr -> next -> data == x) {
+      Node* temp = new Node(data);
+      temp -> next = curr -> next;
+      curr -> next = temp;
+      break;
+    }
+    curr = curr -> next;
+  }
+  return head;
+}
