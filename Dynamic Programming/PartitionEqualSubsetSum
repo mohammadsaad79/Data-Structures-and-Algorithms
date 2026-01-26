@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+int subsetSum(int n, int k, int arr[]) {
+    vector<vector<int>> dp(n, vector<int>(k + 1));
+    for (int i = 0; i < n; i++) dp[i][0] = 1;
+    for (int total = 1; total <= k; total++) {
+        if (total == arr[0]) dp[0][total] = 1;
+        else dp[0][total] = 0;
+    }
+    for (int i = 1; i < n; i++) {
+        for (int total = 1; total <= k; total++) {
+            bool not_pick = dp[i - 1][total];
+            bool pick;
+            if (arr[i] > total) pick = 0;
+            else pick = dp[i - 1][total - arr[i]];
+            dp[i][total] = pick || not_pick;
+        }
+    }
+    return dp[n - 1][k];
+}
+int partition(int arr[], int n) {
+    int sum = 0;
+    for(int i = 0; i < n; i++)
+        sum += arr[i];
+    if(sum % 2 == 1) return 0;
+    return subsetSum(n, sum/2, arr);
+}
+int main() {
+    int n;
+    cout << "Enter size of array: ";
+    cin >> n;
+    int arr[n];
+    cout << "Enter array elements: ";
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+    cout << partition(arr, n);
+    return 0;
+}
