@@ -1,0 +1,5 @@
+void printNumberInAsc(int n) {
+    if(n == 0) return;
+    printNumberInAsc(n - 1);
+    cout << n << " ";
+}
