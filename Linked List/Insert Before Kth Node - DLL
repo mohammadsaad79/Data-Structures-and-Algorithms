@@ -1,0 +1,28 @@
+Node* insertBeforeKthNode(Node* head, int k, int a) {
+    if(head == NULL) {
+        Node* head = new Node(a);
+        return head;
+    }
+    if(k == 0) {
+        Node* temp = new Node(a);
+        head -> prev = temp;
+        temp -> next = head;
+        head = temp;
+        return head;
+    }
+    Node* curr = head;
+    int count = 0;
+    while(curr -> next != NULL) {
+        if(count == k - 1) {
+            Node* temp = new Node(a);
+            curr -> next -> prev = temp;
+            temp -> next = curr -> next;
+            temp -> prev = curr;
+            curr -> next = temp;
+            break;
+        }
+        curr = curr -> next;
+        count++;
+    }
+    return head;
+}
