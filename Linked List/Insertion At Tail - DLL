@@ -1,0 +1,14 @@
+Node* insertionAtTail(Node* head, int a) {
+    if(head == NULL) {
+        Node* head = new Node(a);
+        return head;
+    }
+    Node* curr = head;
+    while(curr -> next != NULL) {
+        curr = curr -> next;
+    }
+    Node* temp = new Node(a);
+    curr -> next = temp;
+    temp -> prev = curr;
+    return head;
+}
