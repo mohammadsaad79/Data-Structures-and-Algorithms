@@ -1,0 +1,26 @@
+Node *addTwoNumbers(Node *a, Node *b) {
+    Node* ans = new Node(0);
+    Node* curr = ans;
+    int carry = 0;
+    while(a || b || carry) {
+        int sum = carry;
+        if(a) {
+            sum += a -> data;
+            a = a -> next;
+        }
+        if(b) {
+            sum += b -> data;
+            b = b -> next;
+        }
+        carry = sum / 10;
+        curr -> next = new Node(sum % 10);
+        curr = curr -> next;
+    }
+    return ans -> next;
+} 
+Node *addNumbers(vector<Node*>& lists) {
+    Node* res = new Node(0);
+    for(Node*& list : lists)
+        res = addTwoNumbers(res, list);
+    return res;
+}
