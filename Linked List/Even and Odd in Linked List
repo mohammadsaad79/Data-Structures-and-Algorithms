@@ -1,0 +1,24 @@
+Node* evenAndOdd(Node* head) {
+    queue<int> s1, s2;
+    Node* temp = head;
+    int count = 0;
+    while(temp != nullptr) {
+        if(count % 2 == 0) s1.push(temp -> data);
+        else s2.push(temp -> data);
+        temp = temp -> next;
+        count++;
+    }
+    Node* ans = new Node(-1);
+    Node* res = ans;
+    while(!s1.empty()) {
+        ans -> next = new Node(s1.front());
+        s1.pop();
+        ans = ans -> next;
+    }
+    while(!s2.empty()) {
+        ans -> next = new Node(s2.front());
+        s2.pop();
+        ans = ans -> next;
+    }
+    return res -> next;
+}
