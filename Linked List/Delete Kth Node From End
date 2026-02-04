@@ -1,0 +1,18 @@
+Node* deleteKthNodeFromEnd(Node* head, int k) {
+    Node* back = head;
+    Node* front = head;
+    for(int i = 1; i <= k+1; i++){
+        front = front->next;
+    }
+    if(front == nullptr){
+        return head->next;
+    }
+    while(front->next != nullptr){
+        front = front->next;
+        back = back->next;
+    }
+    Node* n = back->next;
+    back->next = back->next->next;
+    delete n;
+    return head;
+}
