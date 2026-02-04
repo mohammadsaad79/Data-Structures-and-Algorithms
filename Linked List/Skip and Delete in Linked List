@@ -1,0 +1,18 @@
+Node* deleteNAfterMNodes(Node* head, int m, int n) {
+    Node* current = head;
+    while (current != nullptr) {
+        for (int i = 1; i < m && current != nullptr; i++) {
+            current = current->next;
+        }
+        if (current == nullptr) {
+            return head;
+        }
+        Node* temp = current->next;
+        for (int i = 1; i <= n && temp != nullptr; i++) {
+            temp = temp->next;
+        }
+        current->next = temp;
+        current = temp;
+    }
+    return head;
+}
