@@ -1,0 +1,19 @@
+Node* swapNodes(Node* head, int k) {
+    Node* current = head;
+    Node* firstNode = nullptr;
+    Node* secondNode = nullptr;
+    int length = 0;
+    while (current != NULL) {
+        length++;
+        if (secondNode != nullptr) {
+            secondNode = secondNode->next;
+        }
+        if (length == k) {
+            firstNode = current;
+            secondNode = head;
+        }
+        current = current->next;
+    }
+    swap(firstNode->data, secondNode->data);
+    return head;
+}
