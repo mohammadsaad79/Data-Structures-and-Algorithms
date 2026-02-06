@@ -1,0 +1,12 @@
+Node* reverse_LL(Node* head){
+    Node* cur = head;
+    Node* prev = nullptr;
+    Node* front;
+    while(cur != nullptr){
+        front = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = front;
+    }
+    return prev;
+}
