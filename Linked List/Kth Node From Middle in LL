@@ -1,0 +1,12 @@
+Node* findKthFromMiddle(Node* head, int k) {
+    Node* temp = head;
+    int len = 0;
+    while(temp != nullptr) {
+        len++;
+        temp = temp -> next;
+    }
+    Node* curr = head;
+    for(int i = 0; i < len / 2 - k; i++)
+        curr = curr -> next;
+    return curr;
+}
