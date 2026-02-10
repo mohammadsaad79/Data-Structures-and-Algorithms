@@ -1,0 +1,29 @@
+bool canBecomePalindromeRecursive(string s, int left, int right, vector<pair<int, int>> &mismatches) {
+    if (left >= right) {
+        if (mismatches.size() == 0) {
+            return true;
+        } else if (mismatches.size() == 1) {
+            auto first = mismatches[0];
+            return (s[first.first] == s[s.length() / 2] || s[first.second] == s[s.length() / 2]);
+        } else if (mismatches.size() == 2) {
+            auto first = mismatches[0];
+            auto second = mismatches[1];
+            return (s[first.first] == s[second.second] && s[first.second] == s[second.first]) ||
+                   (s[first.first] == s[second.first] && s[first.second] == s[second.second]);
+        }
+    }
+    if (s[left] == s[right]) {
+        return canBecomePalindromeRecursive(s, left + 1, right - 1, mismatches);
+    } else {
+        mismatches.push_back({left, right});
+        if (mismatches.size() > 2) {
+            return false;
+        }
+        return canBecomePalindromeRecursive(s, left + 1, right - 1, mismatches);
+    }
+}
+
+bool canBecomePalindrome(string s) {
+    vector<pair<int, int>> mismatches;
+    return canBecomePalindromeRecursive(s, 0, s.length() - 1, mismatches);
+}
