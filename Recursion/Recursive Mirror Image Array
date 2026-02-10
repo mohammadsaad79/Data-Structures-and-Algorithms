@@ -1,0 +1,12 @@
+bool helperFunc(vector<int>& arr, int left, int right) {
+    if (left >= right) {
+        return true;
+    }
+    if (arr[left] != arr[right]) {
+        return false;
+    }
+    return helperFunc(arr, left + 1, right - 1);
+}
+bool isMirrorImage(vector<int>& arr, int n){
+    return helperFunc(arr, 0, n-1);
+}
