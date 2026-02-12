@@ -1,0 +1,33 @@
+Node* reverse_LL(Node* head){
+    Node* cur = head;
+    Node* prev = nullptr;
+    Node* front;
+    while(cur != nullptr){
+        front = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = front;
+    }
+    return prev;
+}
+bool palindromeLL(Node* head) {
+    Node* slow = head;
+    Node* fast = head;
+    while (fast != nullptr && fast->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    Node* rhead = reverse_LL(slow);
+    Node* temp = head;
+    Node* rtemp = rhead;
+    while (rtemp != nullptr) {
+        if (temp->data != rtemp->data) {
+            reverse_LL(rhead);
+            return false;
+        }
+        temp = temp->next;
+        rtemp = rtemp->next;
+    }
+    reverse_LL(rhead);
+    return true;
+}
