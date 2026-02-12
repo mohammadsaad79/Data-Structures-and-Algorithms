@@ -1,0 +1,27 @@
+int findMaxTwinSum(Node* head) {
+    if (head == NULL) return 0;
+    Node* slow = head;
+    Node* fast = head;
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    Node* prev = NULL;
+    Node* current = slow;
+    while (current != NULL) {
+        Node* nextNode = current->next;
+        current->next = prev;
+        prev = current;
+        current = nextNode;
+    }
+    int maxSum = 0;
+    Node* firstHalf = head;
+    Node* secondHalf = prev;
+    while (secondHalf != NULL) {
+        int twinSum = firstHalf->data + secondHalf->data;
+        maxSum = max(maxSum, twinSum);
+        firstHalf = firstHalf->next;
+        secondHalf = secondHalf->next;
+    }
+    return maxSum;
+}
